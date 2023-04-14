@@ -1,23 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import { Container } from 'reactstrap';
+import Services from './components/Services';
+import { useState } from 'react';
+import FormModal from './components/FormModal';
+import Logo from './components/Logo';
+import Carousel from './components/Carousel';
+import Footer from './components/Footer';
+
 
 function App() {
+
+  const [modal, setModal] = useState(false)
+
+  function toggle(){
+    setModal(prev => !prev)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header toggle={toggle}/>
+
+      <Container className='container'>
+
+        <Logo />
+
+        <Services />
+
+        <FormModal toggle={toggle} modal={modal}/>
+
+        <Carousel />
+
+      </Container>
+      
+      <Footer toggle={toggle}/>
     </div>
   );
 }
